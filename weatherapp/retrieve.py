@@ -5,12 +5,21 @@ import json
 
 
 dotenv.load_dotenv()
-key = os.getenv("API_KEY")
+weather_key = os.getenv("WEATHER_API_KEY")
 
-url = f"http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={key}"
+url = f"http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={weather_key}"
 
+def get_city_name():
+    while True:
+        try:
+            city = str(input("What city are you looking for?: ")).capitalize()
+            break
+        except:
+            print("mh, wrong format, please try again with a correct name")
+    
+    return city
 
-def get_coordinates_city(city_name = None, state_code = None, country_code = None, key = key):
+def get_coordinates_city(city_name = None, state_code = None, country_code = None, key = weather_key):
     
     url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=1&appid={key}"
 
@@ -23,12 +32,13 @@ def get_coordinates_city(city_name = None, state_code = None, country_code = Non
 
 
 
-def retrieve_weather_data(lat, lon, key = key):
+def retrieve_weather_data(lat, lon, key = weather_key):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={key}"
     data = requests.get(url)
     data = data.json()
     print(data)
 
 
-lat, lon = get_coordinates_city("Stuttgart")
+city = get_city_name()
+lat, lon = get_coordinates_city(city)
 retrieve_weather_data(lat, lon)
