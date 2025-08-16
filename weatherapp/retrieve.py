@@ -1,13 +1,10 @@
 import requests
 import os
-import dotenv
+from dotenv import load_dotenv
 import json
 
-
-dotenv.load_dotenv()
+load_dotenv()
 weather_key = os.getenv("WEATHER_API_KEY")
-
-url = f"http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={weather_key}"
 
 def get_city_name():
     while True:
@@ -19,15 +16,16 @@ def get_city_name():
     
     return city
 
-def get_coordinates_city(city_name = None, state_code = None, country_code = None, key = weather_key):
+def get_coordinates_city(key = weather_key, city_name = None, state_code = None, country_code = None):
     
     url = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=1&appid={key}"
 
     response = requests.get(url)
     response = response.json()
+    print(response)
     lat = float(round(response[0]["lat"],2))
     lon = float(round(response[0]["lon"],2))
-    # print(f"lat -> {lat}, lon -> {lon}")
+    print(f"lat -> {lat}, lon -> {lon}")
     return lat, lon
 
 
@@ -37,8 +35,3 @@ def retrieve_weather_data(lat, lon, key = weather_key):
     data = requests.get(url)
     data = data.json()
     print(data)
-
-
-city = get_city_name()
-lat, lon = get_coordinates_city(city)
-retrieve_weather_data(lat, lon)
