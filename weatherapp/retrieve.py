@@ -1,3 +1,7 @@
 import requests
 import os
-import doten
+import dotenv
+
+
+dotenv.load_dotenv()
+key = os.getenv()
