@@ -8,7 +8,8 @@ separator = "_" * 75
 
 def main():
     
-    
+    #clear terminal
+    os.system("clear")
     
     city = get_city_name()
     
@@ -26,24 +27,6 @@ def main():
     description = create_description(description_prompt)
     
     print(description)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
