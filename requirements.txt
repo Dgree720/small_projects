@@ -1,0 +1,11 @@
+pandas
+scikit-learn
+numpy
+ipykernel
+seaborn
+matplotlib
+requests
+Pyside6
+rich
+openai
+
