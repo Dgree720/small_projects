@@ -8,3 +8,6 @@ requests
 Pyside6
 rich
 openai
+xgboost
+lightgbm
+catboost
