@@ -11,3 +11,5 @@ openai
 xgboost
 lightgbm
 catboost
+transformers
+torch
