@@ -13,3 +13,5 @@ lightgbm
 catboost
 transformers
 torch
+langchain
+langgraph
